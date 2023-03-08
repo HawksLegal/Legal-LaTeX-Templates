@@ -10,7 +10,8 @@
 \usepackage[shortlabels]{enumitem} % Allows changing enumerate indent. 
 \usepackage{fancyhdr}
 \usepackage{kantlipsum} % Allows testing what the document will look like with \kant giving random text.
-\usepackage[ddmmyyyy]{datetime}
+\usepackage{datetime}
+ \newdateformat{mydate}{\twodigit{\THEDAY}\ \monthname[\THEMONTH] \THEYEAR}
 \usepackage[margin=1in]{geometry}
 \usepackage{indentfirst} % LaTeX default is to not indent the first paragraph of a section. This is silly. But that's the style of APA, apparently. The law obviously has a lot of silly formatting rules as well. 
 \usepackage{microtype} % Makes the typography better by making a million imperceptible changes that add up to lines working out better, particularly with justified text.
@@ -46,7 +47,7 @@
 
 \title{\large\bfseries\centering\MotionTitle}
 \author{Hawks Legal}
-\date{\today}
+\date{\mydate\today}
 
 % For Contracts and Letters:
 % This makes the subsection a part of the paragraph 
