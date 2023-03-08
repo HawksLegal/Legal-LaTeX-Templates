@@ -1,0 +1,52 @@
+\usepackage{ifthen}
+\newcommand{\clientname}{John Doe}
+\newcommand{\clientgender}{M} % Set gender to M or F
+\newcommand{\clientdob}{01 January 1985}
+
+
+% Pronoun changing
+\newcommand{\ThirdPossessive}{%
+    \ifthenelse{\equal{\clientgender}{M}}%
+	{his}%
+    {\ifthenelse{\equal{\clientgender}{F}}%
+	{hers}%
+	{theirs}%
+}%
+}
+
+\newcommand{\ThirdPronomial}{%
+    \ifthenelse{\equal{\clientgender}{M}}%
+	{his}%
+    {\ifthenelse{\equal{\clientgender}{F}}%
+	{her}%
+	{their}%
+}%
+}
+
+\newcommand{\ThirdAccusative}{%
+    \ifthenelse{\equal{\clientgender}{M}}%
+	{him}%
+    {\ifthenelse{\equal{\clientgender}{F}}%
+	{her}%
+	{them}%
+}%
+}
+
+\newcommand{\ThirdNominative}{%
+    \ifthenelse{\equal{\clientgender}{M}}%
+	{he}%
+    {\ifthenelse{\equal{\clientgender}{F}}%
+	{she}%
+	{they}%
+}%
+}
+
+\newcommand{\ThirdReflexive}{%
+    \ifthenelse{\equal{\clientgender}{M}}%
+	{himself}%
+    {\ifthenelse{\equal{\clientgender}{F}}%
+	{herself}%
+	{themselves}%
+}%
+}
+
