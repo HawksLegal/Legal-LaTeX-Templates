@@ -1,0 +1,126 @@
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{indentfirst}
+\usepackage{widows-and-orphans}
+\usepackage[utf8]{inputenc}
+\usepackage[style=/home/user/Documents/Business/Clients/Templates/legal,ibidtracker=strict,citetracker=true,ibidpage=true,loccittracker=true]{biblatex}
+\addbibresource{cases.bib}
+\addbibresource{legal.dbx}
+\usepackage{newcent} % Close to Century Schoolbook.
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{setspace}
+\usepackage{titlecaps}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{datetime}
+\newdateformat{mydate}{\twodigit{\THEDAY}\ \monthname[\THEMONTH] \THEYEAR}
+\usepackage{graphicx}
+\graphicspath{{/home/user/Pictures}}
+\usepackage{lastpage}
+
+\setlength{\headheight}{41.2pt} % Giving room in the header for the logo.
+
+
+\titleformat{\section}{\normalfont\bfseries\singlespacing}{\thesection.}{1em}{}
+\renewcommand{\thesection}{\Roman{section}}
+
+\makeatletter
+\renewcommand{\@seccntformat}[1]{%
+  \protect\makebox[\parindent][l]{\csname the#1\endcsname}%
+  }
+% patch the wrong definition of `\stc@sect`
+\patchcmd{\stc@sect}
+  {\edef\@svsec{\csname the#1\endcsname\hskip1em}}
+    {\protected@edef\@svsec{\@seccntformat{#1}\relax}}
+      {}{}
+      \makeatother
+
+\newcommand{\MotionTitle}{Test Document} % Put the title of the document here so it will both generate the title and allow me to call it elsewhere. 
+
+\title{\large\bfseries\centering\MotionTitle}
+\author{Hawks Legal}
+\date{\mydate\today}
+
+\pagestyle{fancy}
+\fancyhead[CO]{\scriptsize\MotionTitle}
+\fancyhead[RO]{\scriptsize Page \textbf{\thepage{}} of~\textbf{\pageref{LastPage}}} 
+\lhead{\hspace{2.45em}\includegraphics[width=0.05\textwidth]{Color-Logo-Hawks-Legal-Crop}\\\scshape{Hawks Legal}}
+
+
+\input{intake}
+
+\begin{document}
+\raggedbottom
+\maketitle
+\thispagestyle{fancy}
+\raggedright{}
+\setstretch{1.6}
+\setlength\parindent{2.5pc}
+
+
+\noindent\textbf{Here you can see the automatic pronoun switching:}
+\vspace{2em}
+
+The cat belongs to \clientname{}, whose date of birth is \clientdob{}. 
+
+This cat is \theirs{}.
+
+This is \their{} cat.
+
+The cat was assigned to \them{}.
+
+\They{} did not find the cat \themselves{}.
+\vspace{2em}
+
+\noindent\textbf{Here you can see the table of authorities goes to the next page and is automatically sorted alphabetically by case name:}
+
+\clearpage
+\printbibliography
+\clearpage
+
+\section{Sections are automatically numbered.}
+
+\textbf{This is the first citation:}\\
+\cite[413]{Northland2020}
+
+\textbf{This is an \emph{Id.} to a different page number:}\\
+\cite[412]{Northland2020}
+
+\textbf{This is an \emph{Id.} to the same number with the \emph{see} signal.}\\
+\cite[See][412]{Northland2020}
+
+\textbf{This is the second citation without a pin cite:}\\
+\cite{Gordon2000}
+
+\textbf{This is a short form from the first citation:}\\
+\cite[412]{Northland2020}
+
+\textbf{This is a short form from the second citation with a pin cite:}\\
+\cite[130]{Gordon2000}
+
+\textbf{This is a short form from the second citation without a pin cite, again:}\\
+\cite{Gordon2000} (I think this is technically correct, but probably ill-advised)
+
+\textbf{This is the first citation without a pin cite:}\\
+\cite{Northland2020} 
+
+\textbf{This is the first citation again with a pin cite: }\\
+\cite[411]{Northland2020}
+
+\textbf{This is the third citation:}\\
+\cite[275]{Kaigler1997}\label{third citation}
+
+\clearpage
+
+\section{Labels and refs.}
+You can use \textbackslash{}label and \textbackslash{}ref to refer to other parts of a document dynamically. Ex.
+
+The third citation was in Section~\ref{third citation}. It was on page ~\pageref{third citation}.
+
+If I move that section later, both of those will automatically update to be correct. I find this useful for contracts.
+
+
+\end{document}
+
