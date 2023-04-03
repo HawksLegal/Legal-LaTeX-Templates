@@ -1,0 +1,118 @@
+%!TEX program = xelatex
+\documentclass[12pt]{article}
+\usepackage{law}
+\usepackage{pronouns}
+\usepackage{motion}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% Formatting for legal documents  %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlist[enumerate,1]{leftmargin=1.0cm} % Moves enumerated list left (by 1cm)
+
+\newcommand{\MotionTitle}{Defendant's Motion to Set Aside Default Judgment}
+\newcommand{\causeno}{\textbf{234816000010}}
+
+\title{\large\bfseries\centering\MotionTitle\vspace{-36pt}}
+\author{}
+\date{}
+
+% For Contracts and Letters:
+% This makes the subsection a part of the paragraph
+\begin{comment}
+\titleformat{\section}{\bfseries\singlespacing}{\thesection.}{6pt}{\vspace{-1em}}
+\titleformat{\subsection}[runin]{\normalsize\bfseries}{\thesubsection.}{6pt}{}
+\end{comment}
+
+% For Briefs to the Court
+%\begin{comment}
+% This makes the subsection indented and use Roman sections, Alph for subsections, and arabic for subsubsections.
+\titleformat{\section}{\latofont\bfseries\singlespacing\nolinenumbers}{\hspace{.25in}\normalfont\bfseries\thesection.}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries\itshape}{\hspace{.5in}\thesubsection.}{8pt}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\hspace{.82in}\thesubsubsection.}{12pt}{}
+%\end{comment}
+
+
+\pagestyle{fancy}
+\fancyhead[CO]{\scriptsize\MotionTitle}
+\fancyhead[RO]{\scriptsize\thepage{} of~\pageref{LastPage}}
+\fancyfoot{}
+\setlength{\headheight}{15pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% {The actual document} %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\input{/home/citric/Documents/Business/Clients/Templates/intake}
+\maketitle
+\thispagestyle{fancy}
+
+\newcommand{\client}{Donny Defendant}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% {START CAPTION} %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Court{%
+	In the Justice Court\\%
+	Precinct 5, Place 1\\%
+	Harris County, Texas%
+}
+
+\hbadness=10000\PDC{%
+	Landlord, LLC}% Plaintiff
+	{\client}% Defendant
+	{\MotionTitle % Title
+}%
+
+\pagewiselinenumbers % starts line numbering for motions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% {END CAPTION} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+
+\setstretch{1.6}
+\centering
+\nolinenumbers{}
+\textbf{Background}
+
+\pagewiselinenumbers{}
+\justifying
+\client{} is a veteran and refugee of the Afghan war. He fought with the American troops in Afghanistan until the Afghan government fell to the Taliban in August of 2021, when he was evactuated by the United States military to seek asylum in the United States. Because refugee programs moved him from place to place around the world and within the United States, he left the unit he had been renting from the Plaintiff when his case manager incorrectly advised him that he did not have to arrange to terminate the lease agreement. He was too unfamiliar with the American landlord--tenant procedure to question his case manager's advice. As a result, he ``just left'' the unit, and the unit has not been his ``usual place of residence'' since May 2022.
+
+\newpage
+
+\centering
+\nolinenumbers{}
+\textbf{Argument}
+
+\pagewiselinenumbers{}
+\justifying
+
+The Court should set aside this default judgment because the citation was not delivered to the Defendant's usual residence and the citation was not issued pursuant to the Texas Rules of Civil Procedure. Additionally, the Plaintiff has forfeited the right to do business in Texas, and therefore had no legal capacity to bring a lawsuit.
+
+\section{\client{} did not have notice of the suit because the citation was not delivered at \texorpdfstring{\their}~ usual residence.}
+The Texas Rules of Civil Procedure (the ``Rules'') require that citation for eviction cases be served ``at the defendant's usual place of residence.'' Tex. R. Civ. Pro. 510.4(b)(2). The Rules do not define what ``usual place of residence'' means, but the Houston Court of Appeals affirmed in the \emph{Butler v. Ross} that a party must do due diligence in effecting service of process upon an opposing party. \emph{Butler v. Ross}, 836 S.W.2d 833, 836 (Tex. App.---Houston [1st Dist.] 1992, no writ). In that case, the appellant was a defendant whose original citation was not served properly. \emph{Id.} at 834. The court in \emph{Butler} ruled that the plaintiff did not exercise due dilligence in determining where the defendant's usual place of residence was to properly bring the suit. \emph{Id.} at 836. Because of that lack of due diligence, the court sided with the appellant and determined that the plaintiff should take nothing by its suit. \emph{Id.}
+
+Here, like in the \emph{Butler} case, (1) the Plaintiff did not do due diligence to find out where the Defendant's usual place of residence was, apparently simply assuming it was the Plaintiff's unit; and (2) the Defendant's usual place of residence had changed more than six months before the suit had been brought.
+
+\section{The citation was not issued pursuant to the Texas Rules of Civil Procedure.}
+A citation that gives a day for the trial which is more than 21 days after the date the petition was filed is improper. Tex. R. Civ. Pro. 510.4(a)(10). Here, the original petition was filed on 03 January 2023. The latest that the citation could tell \client{} to appear for trial would be 21 days after 03 January, which is 24 January 2023. However, this citation was not delivered until 09 February 2023, and the trial was set for 14 February 2023.
+
+
+\section{\client{} was not properly served with citation because the citation was not delivered at least six days before the trial.}
+The Texas Rules of Civil Procedure require that citation for eviction cases must be served ``at the defendant's usual place of residence, at least 6 days before the day set for trial.'' Tex. R. Civ. Pro. 510.4(b)(2). The procedure for computing time in the same Rules provides, ``The day of the act, event, or default after which the designated period of time begins to run is not to be included.'' Tex. R. Civ. Pro. 4. This is also reflected in the Justice Court rules (the ``500 rules''), providing that, when computing a time period required by the Rules, the Court should ``exclude the day of the event that triggers the period.'' Tex. R. Civ. Pro. 500.5(a)(1).
+
+Because the citation must be served six days before the trial, the ``event'' here is the service of citation. \emph{See} Tex. R. Civ. Pro. 4, 500.5(a)(1). The timestamp on the eviction citation notes that it was delivered on 09 February 2023. The court date was 14 February 2023. Excluding 09 February 2023, six days later is the earliest date that the trial could have been set under the Rules is 15 February 2023. Thus, \client{} did not receive an adequate citation and the original judgment should be vacated.
+
+\section{The Plaintiff does not have the legal capacity to sue because it has forfeited its right to transact business in Texas.}
+Landlord, LLC is a Texas Limited Liability Company. Entities like Landlord, LLC are subject to the Texas franchise tax, and, if the LLC has not reported to the Texas comptroller as required, it forfeits its right to bring or defend lawsuits in Texas. Tex. Tax Code \S\S~171.251, 171.252, 171.2515.
+
+\newpage
+Because Landlord, LLC has forfeited its right to transact business in Texas, it has no right to bring this suit, and the suit must be dismissed.
+
+\respectfullysubmitted{}
+\end{document}
