@@ -37,8 +37,8 @@
     \setunit{\addspace}%
     \printfield{year}%
     \iffieldundef{note}{}{\setunit{\addcomma\addspace}\printfield{note}}%
-  }\hspace{-.5ex}
-  \dotfill\hspace{-.5ex}\usebibmacro{pageref}%
+  }\hspace{-.8ex}
+  \dotfill\usebibmacro{pageref}%
   %\usebibmacro{finentry}% adds a period at the end, but we don't need that.
 }
 
@@ -46,8 +46,14 @@
 
 \DeclareBibliographyDriver{statute}{%
   \usebibmacro{begentry}%
-  \printfield{title}\addspace\S\addspace\printfield{chapter}\printfield{section}\hspace{-0.5ex}
-  \mydots\hspace{-0.5ex}\usebibmacro{pageref}%
+  \printfield{title}\addspace\S\addspace\printfield{chapter}\printfield{section}\hspace{-0.7ex}
+ \dotfill\usebibmacro{pageref}%
+}
+
+\DeclareBibliographyDriver{courtrule}{%
+  \usebibmacro{begentry}%
+  \printfield{title}\addspace\printfield{pages}\hspace{-0.7ex}
+ \dotfill\usebibmacro{pageref}%
 }
 
 % Define the formatting for the title field
@@ -73,7 +79,8 @@
 \DeclareFieldFormat[case]{prenote}{\mkbibitalic{#1}}
 
 % Define the formatting for the postnote field
-\DeclareFieldFormat{postnote}{#1}
+\DeclareFieldFormat[case,statute]{postnote}{#1}
+\DeclareFieldFormat[courtrule]{postnote}{#1}
 
 % Define the formatting for the title field
 \DeclareFieldFormat[statute]{title}{#1}
