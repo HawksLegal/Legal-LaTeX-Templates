@@ -1,0 +1,29 @@
+\ProvidesFile{legal.dbx}%
+%
+\DeclareDatamodelEntrytypes{case}%
+%
+\DeclareDatamodelFields[type=field,datatype=literal]{title,shorttitle,volume,pages,institution,year,note}%
+%
+\DeclareDatamodelEntryfields{title,shorttitle,volume,pages,institution,year,note}%
+\DeclareDatamodelConstraints{%
+  \constraint[type=mandatory]{%
+	\constraintfield{title}%
+	\constraintfield{shorttitle}%
+	\constraintfield{volume}%
+	\constraintfield{institution}%
+	\constraintfield{year}%
+  }%
+}%
+
+\DeclareDatamodelEntrytypes{statute}%
+%
+\DeclareDatamodelFields[type=field,datatype=literal]{title,chapter,section}%
+%
+\DeclareDatamodelEntryfields{title,chapter,section}%
+\DeclareDatamodelConstraints{%
+  \constraint[type=mandatory]{%
+	\constraintfield{title}%
+	\constraintfield{chapter}%
+	\constraintfield{section}%
+  }%
+}%

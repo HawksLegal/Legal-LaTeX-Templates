@@ -1,0 +1,86 @@
+\ProvidesFile{legal.bbx}[2023/03/09 bluebook bibliography style]
+\RequireBibliographyStyle{verbose-trad1}
+\DeclarePrintbibliographyDefaults[keyword={case}]{title=\normalfont \centering \normalsize \scshape Table of Authorities\\Cases \hfill Page(s)}
+
+\DefineBibliographyStrings{english}{%
+	backrefpage = {},
+	backrefpages = {},
+}
+
+% This makes the TOC and TOA dots closer together and closer to the page number and the entry
+\def\mydots{\leavevmode\xleaders\hbox to 0.3em{\hfil.\hfil}\hfill}
+
+\renewbibmacro{pageref}{%
+\iflistundef{pageref}
+	{}
+	\ifnumgreater{\value{pageref}}{5}{\printtext{passim}}{% If not more than 5:
+	\printlist[pageref][-\value{listtotal}]{pageref}
+	}%
+}
+
+\newtoggle{cbx:ibidpage}
+\DeclareBibliographyOption[boolean]{ibidpage}[true]{%
+  \ifstrequal{#1}{true}
+    {\ExecuteBibliographyOptions{loccittracker=constrict}}
+    {\ExecuteBibliographyOptions{loccittracker=false}}}
+
+% Define the driver for the @case entry type
+\DeclareBibliographyDriver{case}{%
+  \usebibmacro{begentry}%
+  \printfield{title}\printtext{,}\rightskip=3em%
+	% Had to add comma like that because
+	% sometimes case names end with period, which deletes the comma added by \addcomma.
+  \\\printfield{volume}%
+  \addspace
+  \mkbibparens{%
+    \printfield{institution}%
+    \setunit{\addspace}%
+    \printfield{year}%
+    \iffieldundef{note}{}{\setunit{\addcomma\addspace}\printfield{note}}%
+  }\hspace{-.5ex}
+  \dotfill\hspace{-.5ex}\usebibmacro{pageref}%
+  %\usebibmacro{finentry}% adds a period at the end, but we don't need that.
+}
+
+% Define the citation format for the @statute entry type
+
+\DeclareBibliographyDriver{statute}{%
+  \usebibmacro{begentry}%
+  \printfield{title}\addspace\S\addspace\printfield{chapter}\printfield{section}\hspace{-0.5ex}
+  \mydots\hspace{-0.5ex}\usebibmacro{pageref}%
+}
+
+% Define the formatting for the title field
+\DeclareFieldFormat[case]{title}{\mkbibitalic{#1}}
+
+% Define the formatting for the shorttitle field
+\DeclareFieldFormat[case]{shorttitle}{\mkbibitalic{#1}}
+
+% Define the formatting for the court field
+\DeclareFieldFormat[case]{institution}{#1}
+
+% Define the formatting for the note field
+\DeclareFieldFormat[case]{note}{#1}
+
+% Define the formatting for the pages field
+\DeclareFieldFormat[case]{pages}{#1}
+\DeclareFieldFormat[courtrule]{pages}{#1}
+
+% Define the formatting for the pages field
+\DeclareFieldFormat[case]{volume}{#1}
+
+% Define the formatting for the prenote field
+\DeclareFieldFormat[case]{prenote}{\mkbibitalic{#1}}
+
+% Define the formatting for the postnote field
+\DeclareFieldFormat{postnote}{#1}
+
+% Define the formatting for the title field
+\DeclareFieldFormat[statute]{title}{#1}
+\DeclareFieldFormat[courtrule]{title}{#1}
+
+% Define the formatting for the chapter field
+\DeclareFieldFormat[statute]{chapter}{#1.}
+
+% Define the formatting for the section field
+\DeclareFieldFormat[statute]{section}{#1}

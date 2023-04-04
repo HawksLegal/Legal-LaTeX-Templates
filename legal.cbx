@@ -1,0 +1,77 @@
+\ProvidesFile{legal.cbx}[2023/03/10 My citation style]
+
+\setlength{\biblabelsep}{0pt}
+\renewcommand{\multicitedelim}{\addsemicolon\addspace}
+\DeclareDelimFormat*{postnotedelim}{\addspace}
+\DeclareDelimFormat*{prenotedelim}{\addspace}
+
+
+\newbibmacro*{cite:courtrule}{%
+	\printfield{title}\addspace%
+	\iffieldundef{postnote}%
+	{\addspace\printfield{pages}}% No rule number specified
+	{\usebibmacro{postnote}}
+}
+
+\newbibmacro*{cite:statute}{%
+	\printfield{title}\addspace\printtext{\S}%
+	\iffieldundef{postnote}%
+	{\addspace\printfield{chapter}\addperiod\printfield{section}}% Only one section
+	{\printtext{\S}\addspace\printfield{chapter}\addperiod\usebibmacro{postnote}}
+}
+
+\newbibmacro*{cite:long}{%
+        \usebibmacro{prenote}\printfield{title}\addcomma\addspace%
+        \printfield{volume}\iffieldundef{postnote}{}{\addcomma\usebibmacro{postnote}\savefield{postnote}{\lastpostnote}}%
+	\addspace%
+        \mkbibparens{%
+          \printfield{institution}\addspace%
+          \iffieldsequal{institution}{Tex.}{\printtext{\printdate}\addcomma\addspace\printfield{note}}{\printdate}%
+          %
+        }\addperiod%
+}%
+
+\newbibmacro*{cite:short}{%
+	\ifciteseen{%cite has been seen:
+        \usebibmacro{prenote}\printfield{shorttitle}%
+        \addcomma\addspace%
+        \printfield{volume}%
+	\iffieldundef{postnote}{}{\addspace\printtext{at}\usebibmacro{postnote}\savefield{postnote}{\lastpostnote}}%
+	}%
+	%Cite has not been seen:
+        {}
+}%
+
+\newbibmacro*{cite:ibid}{%
+  \ifciteibid{\printtext{%
+    \bibhyperlink{cite\csuse{cbx@lastcite@\thefield{entrykey}}}{%
+	\iffieldundef{prenote}{\mkbibemph{Id.}}{\usebibmacro{prenote}\addspace\mkbibemph{id.}}}
+	\ifboolexpr{ test {\iffieldundef{postnote}} or test {\iffieldequals{postnote}{\lastpostnote}}}{}{%
+	\ifentrytype{case}{\printtext{at}}{\ifentrytype{statute}{\printtext{\S}}{}}\usebibmacro{postnote}\savefield{postnote}{\lastpostnote}\addperiod}}%
+  \ifboolexpr{ test {\ifloccit} and togl {cbx:ibidpage} }
+    {\global\toggletrue{cbx:loccit}}
+    {}}}{}
+
+\DeclareCiteCommand{\cite}
+  {}%
+  {\ifentrytype{case}{% if citation is a case:
+    \usebibmacro{citeindex}%
+    \ifciteibid{\usebibmacro{cite:ibid}}{% If not citeibid:
+    	\ifciteseen{\usebibmacro{cite:short}}%
+	{%
+	{\usebibmacro{cite:long}}
+	}}
+	{}%
+  }% if citation is a case ^
+  {% if citation is a statute:
+	  \ifentrytype{statute}{\ifciteibid{\usebibmacro{cite:ibid}}{\usebibmacro{cite:statute}}}
+	% If citation is a courtrule:
+		{\usebibmacro{cite:courtrule}}
+  }%
+  }% end of citation types
+  {}
+  {}
+
+
+\DeclareMultiCiteCommand{\cites}%
+	{\cite}{\multicitedelim}
