@@ -1,0 +1,90 @@
+% Pronoun changing
+\newcommand{\theirs}{%
+    \ifdefstring{\clientgender}{M}%
+	{his}%
+    {\ifdefstring{\clientgender}{F}%
+	{hers}%
+	{theirs}%
+}%
+}
+
+\newcommand{\their}{%
+    \ifdefstring{\clientgender}{M}%
+	{his}%
+    {\ifdefstring{\clientgender}{F}%
+	{her}%
+	{their}%
+}%
+}
+
+\newcommand{\them}{%
+    \ifdefstring{\clientgender}{M}%
+	{him}%
+    {\ifdefstring{\clientgender}{F}%
+	{her}%
+	{them}%
+}%
+}
+
+\newcommand{\they}{%
+    \ifdefstring{\clientgender}{M}%
+	{he}%
+    {\ifdefstring{\clientgender}{F}%
+	{she}%
+	{they}%
+}%
+}
+
+\newcommand{\themselves}{%
+    \ifdefstring{\clientgender}{M}%
+	{himself}%
+    {\ifdefstring{\clientgender}{F}%
+	{herself}%
+	{themselves}%
+}%
+}
+
+\newcommand{\Theirs}{%
+    \ifdefstring{\clientgender}{M}%
+	{His}%
+    {\ifdefstring{\clientgender}{F}%
+	{Hers}%
+	{Theirs}%
+}%
+}
+
+\newcommand{\Their}{%
+    \ifdefstring{\clientgender}{M}%
+	{His}%
+    {\ifdefstring{\clientgender}{F}%
+	{Her}%
+	{Their}%
+}%
+}
+
+\newcommand{\Them}{%
+    \ifdefstring{\clientgender}{M}%
+	{Him}%
+    {\ifdefstring{\clientgender}{F}%
+	{Her}%
+	{Them}%
+}%
+}
+
+\newcommand{\They}{%
+    \ifdefstring{\clientgender}{M}%
+	{He}%
+    {\ifdefstring{\clientgender}{F}%
+	{She}%
+	{They}%
+}%
+}
+
+\newcommand{\Themselves}{%
+    \ifdefstring{\clientgender}{M}%
+	{Himself}%
+    {\ifdefstring{\clientgender}{F}%
+	{Herself}%
+	{Themselves}%
+}%
+}

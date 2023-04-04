@@ -1,0 +1,112 @@
+% law.sty
+% Packages
+% Font and formatting page
+\usepackage[T1]{fontenc}
+\usepackage{ragged2e}
+\usepackage{indentfirst}
+\usepackage{newcent}
+\usepackage[final]{microtype}% The `final` option makes microtype work in draft mode.
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+
+% Formatting specific parts
+\usepackage{booktabs} % More beautiful tables
+\usepackage{multicol} % Better column splitting and better tables
+\usepackage{multirow} % Better row splitting and better tables
+\usepackage[shortlabels]{enumitem} % Better enumerated/itemized lists
+\usepackage{titlecaps}
+\usepackage{titlesec}
+% Pictures
+\usepackage{graphicx}
+\graphicspath{{/home/citric/Pictures}}
+\def\linenumberfont{\normalfont\tiny} % makes them tiny
+% Dates
+\usepackage[calc]{datetime2}
+\DTMnewdatestyle{mydate}{%
+\renewcommand{\DTMdisplaydate}[4]{\DTMtwodigits{\number##3}\ \DTMmonthname{##2}\ {\number##1}}%
+\renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
+}
+\DTMsetdatestyle{mydate}
+% Citations
+\usepackage[style=legal,ibidtracker=strict,citetracker=true,ibidpage=true,loccittracker=true, backref=true]{biblatex}
+\usepackage{hyperref} % Makes citations in TOA link to text page number
+\addbibresource{/home/citric/texmf/tex/latex/local/cases.bib}
+\addbibresource{legal.dbx}
+
+% Hidden document control
+\usepackage{comment}
+\usepackage{advdate}
+\usepackage{xstring}
+\usepackage{ifthen}
+\usepackage{pgffor}
+\usepackage{pdfpages}
+\usepackage{lastpage}
+\usepackage{etoolbox}
+
+% Formatting
+\setlength{\headheight}{53.0pt} % Giving room in the header for the logo.
+
+\newcommand{\doctitle}{} % Put the title of the document here so it will both generate the title and allow me to call it elsewhere.
+
+\emergencystretch=1em
+
+\title{\large\bfseries\centering\doctitle}
+\author{Hawks Legal}
+\date{\mydate\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% Formatting for legal documents  %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy}
+\fancyhead[CO]{\scriptsize\textit{\doctitle}}
+\fancyhead[RO]{\scriptsize Page \textbf{\thepage{}} of~\textbf{\pageref{LastPage}}}
+\fancyfoot[c]{}
+\lhead{\hspace{2.0em}\includegraphics[width=0.075\textwidth]{ColorLogoCrop}\\\scshape{Hawks Legal}}
+
+\setstretch{1.6}
+\setlength\parindent{2.5pc}
+
+\setlist[enumerate,1]{leftmargin=1.0cm} % Moves enumerated list left (by 1cm)
+
+% Creates a statute-style list.
+\newlist{statutelist}{enumerate}{3} % The number in the third brackets is the maximum depth of t      he list. (section, subsubsection, subsubsubsection, etc.)
+\setlist[statutelist, 1] % Here, I set the list at a depth of one
+{label=(\alph{statutelisti}) % Here I label the first level of enumerated list with arabic numer      als. The first level = statutelisti. Second = statutelistii. Third = statutelistiii.
+}
+
+\setlist[statutelist, 2]
+{label=(\arabic{statutelistii})
+}
+
+\setlist[statutelist, 3]
+{label=(\Alph{statutelistiii})
+}
+
+\newcommand{\coverpage}{%
+  \begin{titlepage}
+	\centering
+	\includegraphics[width=0.3\textwidth]{ColorLogoCrop}\par
+	{\vspace{-0.5cm}\scshape\Huge Hawks Legal\par}
+	\vspace{5cm}
+	{\LARGE\bfseries\doctitle\par}
+	\IfStrEq{\doctitle}{Representation Agreement}{%
+	\vfill
+	{\large \today}
+	}% End true
+	{% Begin false
+	{\Large\textit{\\\arep{}\\\&\\\brep}\par}
+	\vfill
+	{\large \today}
+	\vfill
+	\scriptsize prepared by
+	\textsc{Hawks Legal}
+	}% End false
+\end{titlepage}
+\newgeometry{top = 1.2in, bottom=0.8in, left=1in, right=1in}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% Deadline Calculations  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

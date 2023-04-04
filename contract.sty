@@ -1,0 +1,65 @@
+\usepackage{law}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% Formatting for legal documents  %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\headheight}{53pt}
+\setlist[enumerate,1]{leftmargin=1.0cm} % Moves enumerated list left (by 1cm)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% {Substitutables} %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\partya}{Darris Hawks}% first party
+\newcommand{\arep}{}% first party representative
+\newcommand{\partyb}{Party B}% second party
+\newcommand{\brep}{}% second party representative
+\newcommand{\rolea}{Attorney}
+\newcommand{\roleb}{Client}
+
+\newcommand{\parties}{\partya, \partyb}
+\ifdefempty{\brep}{%
+	\renewcommand{\brep}{\partyb}
+}
+
+\ifdefempty{\arep}{%
+	\renewcommand{\arep}{\partya}
+}
+
+\newcounter{numberofparties}{%
+	\foreach{\n} in \parties{
+	\addtocounter{numberofparties}{+1}
+	}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% {Automation} %%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\namesigdate}[2][5cm]{%
+\begin{tabular}{@{}p{#1}@{}}
+	#2 \\ [-0.7\normalbaselineskip] \hrule
+	{\small \vspace{.5em}\textit{Name}} \\[2\normalbaselineskip] \hrule
+	{\small \vspace{.5em}\textit{Signature}} \\[2\normalbaselineskip] \hrule
+	{\small \vspace{.5em}\textit{Date}}\\
+	{}
+\end{tabular}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% {Title} %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\large\bfseries\centering\doctitle\vspace{-36pt}}
+\author{}
+\date{}
+
+% For Contracts and Letters:
+% This makes the subsection a part of the paragraph
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% {Formatting} %%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titleformat{\section}{\large\centering\scshape\bfseries\singlespacing}{Section \thesection:}{1em}{}
+\titleformat{\subsection}[runin]{\bfseries}{\thesubsection.}{12pt}{}
+
+\pagestyle{fancy}
+
+\setstretch{1.6}
