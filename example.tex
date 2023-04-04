@@ -1,8 +1,8 @@
 \documentclass[12pt]{article}
-\usepackage{law}
 \usepackage{pronouns}
 \input{intake}
 \usepackage{lipsum}
+\usepackage{law}
 
 \titleformat{\section}{\singlespacing\bfseries}{\thesection.}{1em}{}
 \renewcommand*{\thesection}{\Roman{section}}
@@ -31,6 +31,7 @@ The cat was assigned to \them{}.
 \clearpage
 \printbibliography[keyword={case},title={\centering\normalsize\scshape{}Table of Authorities\\\small{}Cases\hfill{}Page(s)}]
 \printbibliography[keyword={statute},title={\raggedright \small \scshape Statutes}]
+\printbibliography[keyword={rule},title={\raggedright \small \scshape Rules}]
 \clearpage
 
 \justify
@@ -55,25 +56,10 @@ The cat was assigned to \them{}.
 
 \textbf{This is a short form from the first citation:}
 
+\cite[413]{Northland2020}
+
 \section{Now I am putting a bunch of random text in to showcase the Table of Authorities pages.}
 
-\lipsum[1]~\cite[412]{Northland2020}
-\lipsum[1]
-\lipsum[1]
-\lipsum[1]
-\lipsum[1]~\cite[412]{Northland2020}
-\lipsum[1]
-\lipsum[1]
-\lipsum[1]~\cite[130]{Gordon2000}
-\lipsum[1]
-\lipsum[1]
-\lipsum[1]~\cite[412]{Northland2020}
-\lipsum[1]
-\lipsum[1]
-\lipsum[1]~\cite[130]{Gordon2000}
-\lipsum[1]~\cite[412]{Northland2020}
-\lipsum[1]~\cite[130]{Gordon2000}
-\lipsum[1]~\cite[412]{Northland2020}
 
 \textbf{This is a short form from the second citation with a pin cite:}\\
 \lipsum[1]~\cite[130]{Gordon2000}
@@ -81,18 +67,23 @@ The cat was assigned to \them{}.
 \textbf{This is a short form from the second citation without a pin cite, again:}\\
 \cite{Gordon2000} (I think this is technically correct, but probably ill-advised)
 
+\textbf{This is the third citation:}\\
+\cite[275]{Kaigler1997}\label{third citation}
+
 \textbf{This is the first citation without a pin cite:}\\
-\cite{Northland2020}
+\cite{Northland2020}.
 
 \textbf{This is the first citation again with a pin cite: }\\
-\cite[411]{Northland2020}
+\cite[412]{Northland2020}.
 
 
 \textbf{This is a statute:}\\
-~\cite{NTV}
+\cite{NTV}.\\\cite{NTV}.\\\cite[122]{NTV}
 
-\textbf{This is the third citation:}\\
-\cite[275]{Kaigler1997}\label{third citation}
+\textbf{This is a rule:}\\
+~\cite[4]{TRCP-time}.
+
+~\cite[4]{TRCP}.
 
 \clearpage
 
