@@ -9,7 +9,7 @@
 \newbibmacro*{cite:courtrule}{%
 	\printfield{title}\addspace%
 	\iffieldundef{postnote}%
-	{\addspace\printfield{pages}}% No rule number specified
+	{\addspace\printfield{postnote}}% No rule number specified
 	{\usebibmacro{postnote}}
 }
 
@@ -44,7 +44,7 @@
 
 \newbibmacro*{cite:ibid}{%
   \ifciteibid{\printtext{%
-    \bibhyperlink{cite\csuse{cbx@lastcite@\thefield{entrykey}}}{%
+    \bibhyperref{cite\csuse{cbx@lastcite@\thefield{entrykey}}}{%
 	\iffieldundef{prenote}{\mkbibemph{Id.}}{\usebibmacro{prenote}\addspace\mkbibemph{id.}}}
 	\ifboolexpr{ test {\iffieldundef{postnote}} or test {\iffieldequals{postnote}{\lastpostnote}}}{}{%
 	\ifentrytype{case}{\printtext{at}}{\ifentrytype{statute}{\printtext{\S}}{}}\usebibmacro{postnote}\savefield{postnote}{\lastpostnote}\addperiod}}%
