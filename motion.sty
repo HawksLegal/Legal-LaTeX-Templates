@@ -1,0 +1,102 @@
+\usepackage[pagewise]{lineno} % allows line numbers
+\usepackage{fontspec}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{lmodern}
+\usepackage{makecell}
+\usepackage{array}
+
+\renewcommand{\linenumberfont}{\tiny\textnormal}
+\newfontfamily\latofont{Lato}
+
+\titleformat{\section}{\normalfont\bfseries\singlespacing}{\thesection.}{1em}{}
+\renewcommand{\thesection}{\Roman{section}}
+
+\makeatletter
+\renewcommand{\@seccntformat}[1]{%
+  \protect\makebox[\parindent][l]{\csname the#1\endcsname}%
+  }
+% patch the wrong definition of `\stc@sect`
+\patchcmd{\stc@sect}
+  {\edef\@svsec{\csname the#1\endcsname\hskip1em}}
+    {\protected@edef\@svsec{\@seccntformat{#1}\relax}}
+      {}{}
+      \makeatother
+
+
+\fancyhf{}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{\makebox[0pt][r]{\raisebox{-1.05\textheight}[0pt][0pt]{\rule{0.3pt}{\textheight} }}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\newcommand{\respectfullysubmitted}{%
+	\vspace{1em}
+	\small
+	\nolinenumbers
+	\raggedleft
+	\setstretch{1}
+	Respectfully submitted,
+
+	\textsc{Hawks Legal}
+
+	Darris Hawks
+
+	Bar No. 24108878
+
+	Attorney for \client{}%
+
+	4414 82nd St.\ Ste.\ 212--1048%
+
+	Lubbock, Texas
+
+	(806) 316 5291
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% {Caption information} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NewDocumentEnvironment{Attorneys}{ +b }{%
+	\parindent=0pt%
+	#1
+}
+
+\NewDocumentCommand{\Court}{ +m }{%
+	{%
+	\centering%
+	~\\
+	{#1}\\
+	~\\[2\baselineskip]%
+	}%
+}
+
+\NewDocumentCommand{\PDC}{ +m +m o +m +m }{%
+	\noindent%
+	\begin{tabular}{%
+		p{0.47\linewidth} |%
+		p{0.47\linewidth}
+	}
+	\multirow{6}{10em}{\textbf{#1},}            & Cause No. \\
+						    & \\
+		\hspace*{1in}Plaintiff; & \IfValueTF{#3}
+					{#3}
+					{#5}\vspace{-1em}
+					{\rule{0.45\textwidth}{0.1pt}}\\
+					&          \\
+		\hspace*{0.5in}v.       & \multirow{6}{*}
+				{%
+					\parbox{0.45\textwidth}{%
+						\sloppy\raggedright\bfseries%
+						#4%
+				}%
+			}\\%
+		&          \\%
+		\textbf{#2},            &          \\%
+		\hspace*{1in}Defendant.  &          \\%
+				&          \\%
+		\cline{1-1}%
+	\end{tabular}
+\vspace*{\baselineskip}
+}
