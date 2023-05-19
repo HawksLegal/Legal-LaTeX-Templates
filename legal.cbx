@@ -26,7 +26,7 @@
 	\addspace%
         \mkbibparens{%
           \printfield{institution}\addspace%
-          \iffieldsequal{institution}{Tex.}{\printtext{\printdate}\addcomma\addspace\printfield{note}}{\printdate}%
+          	  \iffieldequalstr{institution}{Tex.}{\printdate}{\printdate\addcomma\addspace\printfield{note}}%
           %
         }\addperiod%
 }%
