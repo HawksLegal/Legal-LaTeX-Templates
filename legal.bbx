@@ -58,6 +58,7 @@
 
 % Define the formatting for the title field
 \DeclareFieldFormat[case]{title}{\mkbibitalic{#1}}
+\DeclareFieldFormat[exhibit]{title}{#1}
 
 % Define the formatting for the shorttitle field
 \DeclareFieldFormat[case]{shorttitle}{\mkbibitalic{#1}}
@@ -72,6 +73,9 @@
 \DeclareFieldFormat[case]{pages}{#1}
 \DeclareFieldFormat[courtrule]{pages}{#1}
 
+% Define the formatting for the date field
+\DeclareFieldFormat[case]{date}{#1}
+
 % Define the formatting for the pages field
 \DeclareFieldFormat[case]{volume}{#1}
 
@@ -81,6 +85,7 @@
 % Define the formatting for the postnote field
 \DeclareFieldFormat[case,statute]{postnote}{#1}
 \DeclareFieldFormat[courtrule]{postnote}{#1}
+\DeclareFieldFormat[exhibit]{postnote}{#1}
 
 % Define the formatting for the title field
 \DeclareFieldFormat[statute]{title}{#1}
