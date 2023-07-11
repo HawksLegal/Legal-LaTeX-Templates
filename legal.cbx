@@ -1,10 +1,15 @@
 \ProvidesFile{legal.cbx}[2023/03/10 My citation style]
 
+\DeclareLabeldate{\field{year}}
+
 \setlength{\biblabelsep}{0pt}
-\renewcommand{\multicitedelim}{\addsemicolon\addspace}
+%\renewcommand{\multicitedelim}{\addsemicolon\addspace}
 \DeclareDelimFormat*{postnotedelim}{\addspace}
 \DeclareDelimFormat*{prenotedelim}{\addspace}
 
+\newbibmacro*{cite:exhibit}{%
+	\printfield{title}\addspace\usebibmacro{postnote}%
+}
 
 \newbibmacro*{cite:courtrule}{%
 	\printfield{title}\addspace%
@@ -21,14 +26,14 @@
 }
 
 \newbibmacro*{cite:long}{%
-        \usebibmacro{prenote}\printfield{title}\addcomma\addspace%
-        \printfield{volume}\iffieldundef{postnote}{}{\addcomma\usebibmacro{postnote}\savefield{postnote}{\lastpostnote}}%
+	\usebibmacro{prenote}\printfield{title}\printtext{,}\addspace%
+        \printfield{volume}\iffieldundef{postnote}{}{\printtext{,}\usebibmacro{postnote}\savefield{postnote}{\lastpostnote}}%
 	\addspace%
         \mkbibparens{%
-          \printfield{institution}\addspace%
-          	  \iffieldequalstr{institution}{Tex.}{\printdate}{\printdate\addcomma\addspace\printfield{note}}%
+	  \printfield{institution}\addspace%
+	  \iffieldequalstr{institution}{Tex.}{\printdate}{\printdate\addcomma\addspace\printfield{note}}%
           %
-        }\addperiod%
+        }%
 }%
 
 \newbibmacro*{cite:short}{%
@@ -44,7 +49,7 @@
 
 \newbibmacro*{cite:ibid}{%
   \ifciteibid{\printtext{%
-    \bibhyperref{cite\csuse{cbx@lastcite@\thefield{entrykey}}}{%
+    \bibhyperref{\csuse{cbx@lastcite@\thefield{entrykey}}}{%
 	\iffieldundef{prenote}{\mkbibemph{Id.}}{\usebibmacro{prenote}\addspace\mkbibemph{id.}}}
 	\ifboolexpr{ test {\iffieldundef{postnote}} or test {\iffieldequals{postnote}{\lastpostnote}}}{}{%
 	\ifentrytype{case}{\printtext{at}}{\ifentrytype{statute}{\printtext{\S}}{}}\usebibmacro{postnote}\savefield{postnote}{\lastpostnote}\addperiod}}%
