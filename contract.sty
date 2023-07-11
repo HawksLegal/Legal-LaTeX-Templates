@@ -9,20 +9,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% {Substitutables} %%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\partya}{Darris Hawks}% first party
+\newcommand{\partya}{\Client}% first party
 \newcommand{\arep}{}% first party representative
-\newcommand{\partyb}{Party B}% second party
+\newcommand{\partyb}{Darris Hawks}% second party
 \newcommand{\brep}{}% second party representative
-\newcommand{\rolea}{Attorney}
-\newcommand{\roleb}{Client}
+\newcommand{\rolea}{Client}
+\newcommand{\roleb}{Attorney}
 
 \newcommand{\parties}{\partya, \partyb}
-\ifdefempty{\brep}{%
-	\renewcommand{\brep}{\partyb}
-}
 
 \ifdefempty{\arep}{%
 	\renewcommand{\arep}{\partya}
+}
+
+\ifdefempty{\brep}{%
+	\renewcommand{\brep}{\partyb}
 }
 
 \newcounter{numberofparties}{%
@@ -30,6 +31,7 @@
 	\addtocounter{numberofparties}{+1}
 	}
 }
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% {Automation} %%%%%%%%%%%%%%%
@@ -63,3 +65,4 @@
 \pagestyle{fancy}
 
 \setstretch{1.6}
+\fancyhead[RO]{\scriptsize Page \textbf{\thepage{}} of~\textbf{\pageref{SignatureBlock}}}
