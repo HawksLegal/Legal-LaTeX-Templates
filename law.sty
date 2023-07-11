@@ -1,5 +1,8 @@
 % law.sty
 % Packages
+\usepackage{silence}
+\WarningFilter{biblatex}{}
+
 % Font and formatting page
 \usepackage[T1]{fontenc}
 \usepackage{ragged2e}
@@ -21,14 +24,19 @@
 \usepackage{graphicx}
 \graphicspath{{/home/citric/Pictures}}
 \def\linenumberfont{\normalfont\tiny} % makes them tiny
+
 % Dates
-\usepackage[calc]{datetime2}
+\usepackage[useregional,calc]{datetime2} % Don't forget to set it to American
+\newcount\datecount
 \DTMnewdatestyle{mydate}{%
 \renewcommand{\DTMdisplaydate}[4]{\DTMtwodigits{\number##3}\ \DTMmonthname{##2}\ {\number##1}}%
 \renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
 }
 \DTMsetdatestyle{mydate}
+
+
 % Citations
+\usepackage[english]{babel}
 \usepackage[style=legal,ibidtracker=strict,citetracker=true,ibidpage=true,loccittracker=true, backref=true]{biblatex}
 \usepackage[hidelinks]{hyperref} % Makes citations in TOA link to text page number
 \addbibresource{/home/citric/texmf/tex/latex/local/cases.bib}
@@ -108,5 +116,13 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%% Deadline Calculations  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% Deadline Calculations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DTMsavenow{currentdate}
+\newcommand{\appealdate}{
+	\DTMsavedate{NTVreceived}{2021-02-08}%
+	\DTMsaveddateoffsettojulianday{NTVreceived}{3}{\datecount}%
+	\DTMsavejulianday{NTVreceived}{\number\datecount}%
+	\DTMusedate{NTVreceived}%
+}%
