@@ -6,22 +6,114 @@
 \usepackage{makecell}
 \usepackage{array}
 
+\usepackage{titletoc}
+\usepackage{tocloft} % TOC formatting
+\renewcommand{\cfttoctitlefont}{\hfill\normalsize\scshape}
+\renewcommand{\cftaftertoctitle}{\hfill}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} % Add dotted leaders for sections
+\renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}} % Add dotted leaders for subsections
+\renewcommand{\@pnumwidth}{5pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THIS SECTION FOR PROPOSED ORDERS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\fboxsep}{8pt}
+
+\newcommand{\movebox}[2][0pt]{\raisebox{#1}{\fbox{#2}}}
+
+\newcommand{\orderoption}[1]{%
+	\noindent\movebox[4pt]{}
+	\hspace{.5em}
+	\noindent\begin{minipage}{\textwidth-50pt}
+	#1
+	\end{minipage}
+
+	\vspace{2em}
+}
+
+\newcommand{\hearingtime}{
+	on \rule{2in}{0.4pt} at \rule{0.5in}{0.4pt}:\rule{0.5in}{0.4pt} A.M./P.M.%
+}
+
+\newcommand{\judgepresiding}{%
+	\rule{2in}{0.4pt} \hfill \rule{2in}{0.4pt}
+
+	Signed on \hfill JUDGE PRESIDING
+
+\vspace{1em}
+
+\singlespacing
+APPROVED AS TO FORM:
+
+	Darris Hawks
+
+	Bar No. 24108878
+
+	Attorney for \client{}%
+
+	\newpage
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% END ORDER SECTION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\motionsec}[1]{%
+	\centering
+	\nolinenumbers
+	\vspace{1em}
+	\textbf{#1}
+	\addcontentsline{toc}{section}{#1}
+	\phantomsection
+
+	\pagewiselinenumbers{}
+	\justifying
+}
+
+\newcommand{\motionbib}{%
+	\newpage
+	\printbibliography[keyword={case}]
+	\printbibliography[keyword={statute},title=\normalfont \centering \normalsize \scshape Statutes \hfill Page(s)]
+	\printbibliography[keyword={rule},title=\normalfont \centering \normalsize \scshape Court Rules \hfill Page(s)]
+	\newpage
+}
+
+%\titlecontents{section}[1.5em]{\bfseries}{\hspace{1em}\thecontentslabel. }{}{\titlerule*[0.5pc]{.}\contentspage}
+\titlecontents{section}
+  [4.8em] % Adjust the indent for the section number
+  {\singlespacing\contentslabel[\thecontentslabel.]{2.3em}} % Adjust the width of the section number box
+  {\bfseries\hspace*{0em}} % Adjust the horizontal position of the section number
+  {\hspace*{-1.3em}} % Adjust the horizontal position of the section title
+  {\titlerule*[.3pc]{.}\contentspage} % Adjust the formatting of the section entry
+
+\titlecontents{header}
+  [0pt] % Adjust the indent for the section number
+  {\singlespacing\contentslabel[]{2.3em}} % Adjust the width of the section number box
+  {\bfseries\hspace*{0em}} % Adjust the horizontal position of the section number
+  {\hspace*{-1.3em}} % Adjust the horizontal position of the section title
+  {\titlerule*[.3pc]{.}\contentspage} % Adjust the formatting of the section entry
+
 \renewcommand{\linenumberfont}{\tiny\textnormal}
 \newfontfamily\latofont{Lato}
 
-\titleformat{\section}{\normalfont\bfseries\singlespacing}{\thesection.}{1em}{}
+\titleformat{\section}{\centering\normalfont\bfseries\singlespacing}{}{}{}
 \renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
 
 \makeatletter
 \renewcommand{\@seccntformat}[1]{%
   \protect\makebox[\parindent][l]{\csname the#1\endcsname}%
   }
 % patch the wrong definition of `\stc@sect`
-\patchcmd{\stc@sect}
-  {\edef\@svsec{\csname the#1\endcsname\hskip1em}}
-    {\protected@edef\@svsec{\@seccntformat{#1}\relax}}
-      {}{}
-      \makeatother
+%\patchcmd{\stc@sect}
+%  {\edef\@svsec{\csname the#1\endcsname\hskip1em}}
+%    {\protected@edef\@svsec{\@seccntformat{#1}\relax}}
+%      {}{}
+%      \makeatother
 
 
 \fancyhf{}
@@ -30,6 +122,21 @@
 \fancyhead[L]{\makebox[0pt][r]{\raisebox{-1.05\textheight}[0pt][0pt]{\rule{0.3pt}{\textheight} }}}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{toc}{%
+	\fancyhead[CO]{\scriptsize\doctitle}
+	\fancyhead[RO]{\scriptsize\thepage{}}
+	\pagenumbering{roman}
+}
+
+\fancypagestyle{motion}{%
+	\fancyhead[CO]{\scriptsize\doctitle}
+	\fancyhead[RO]{\scriptsize\thepage{} of~\pageref{end}}
+	\fancyfoot{}
+	\setlength{\headheight}{15pt}
+	\pagenumbering{arabic}
+}
+
 
 \newcommand{\respectfullysubmitted}{%
 	\vspace{1em}
@@ -65,7 +172,7 @@
 
 \NewDocumentCommand{\Court}{ +m }{%
 	{%
-	\centering%
+		\centering\setstretch{1.2}%
 	~\\
 	{#1}\\
 	~\\[2\baselineskip]%
@@ -75,17 +182,17 @@
 \NewDocumentCommand{\PDC}{ +m +m o +m +m }{%
 	\noindent%
 	\begin{tabular}{%
-		p{0.47\linewidth} |%
+		p{0.4782\linewidth} |%
 		p{0.47\linewidth}
 	}
-	\multirow{6}{10em}{\textbf{#1},}            & Cause No. \\
-						    & \\
-		\hspace*{1in}Plaintiff; & \IfValueTF{#3}
-					{#3}
-					{#5}\vspace{-1em}
-					{\rule{0.45\textwidth}{0.1pt}}\\
-					&          \\
-		\hspace*{0.5in}v.       & \multirow{6}{*}
+	\multirow{6}{19em}{\textbf{#1},}\vspace{3em}            & \\
+						    & Cause No. \\
+	\hspace*{1in}Plaintiff; & \IfValueTF{#3}%
+					{#3}%
+					\hspace{1em}{#5}\vspace{1em}\\
+					\\
+	\hspace*{0.5in}v.	&  \\
+				& \multirow{6}{*}
 				{%
 					\parbox{0.45\textwidth}{%
 						\sloppy\raggedright\bfseries%
